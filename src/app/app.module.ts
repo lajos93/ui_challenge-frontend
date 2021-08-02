@@ -9,6 +9,7 @@ import { AuthComponent } from './auth/auth.component';
 import { UserComponent } from './pages/user/user.component';
 import { HeaderComponent } from './header/header.component';
 import { DropDownDirective } from './shared/dropdown/drop-down.directive';
+import { RemoveButtonFocusDirective } from './shared/removeButtonFocus/remove-button-focus.directive';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -23,6 +24,7 @@ import { ArticlesComponent } from './pages/articles/articles.component';
 import { ArticleCardComponent } from './pages/articles/article-card/article-card.component';
 import { ArticleCardFavComponent } from './pages/articles/article-card-fav/article-card-fav.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     PictureComponent,
     ArticlesComponent,
     ArticleCardComponent,
-    ArticleCardFavComponent
+    ArticleCardFavComponent,
+    RemoveButtonFocusDirective
   ],
   imports: [
     BrowserModule,

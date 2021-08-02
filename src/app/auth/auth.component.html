@@ -3,42 +3,22 @@
         <div class="alert alert-danger " *ngIf="error">
             <p class="mb-0">{{ error }}</p>
         </div>
-        <form #authForm="ngForm"> 
+        <form #authForm="ngForm">
             <div class="form-group mb-3">
                 <label for="username-input">Username</label>
-                <input 
-                    type="username" 
-                    class="form-control" 
-                    name="username"
-                    ngModel
-                   
-                    />
+                <input type="username" class="form-control" name="username" ngModel />
             </div>
             <div class="form-group mb-3">
                 <label for="email-input">E-mail</label>
-                <input 
-                    type="email" 
-                    class="form-control" 
-                    name="email"
-                    ngModel
-                    required
-                   
-                    />
+                <input type="email" class="form-control" name="email" ngModel required />
             </div>
             <div class="form-group mb-3">
                 <label for="password-input">Password</label>
-                <input 
-                    type="password" 
-                    class="form-control" 
-                    name="password"
-                    ngModel
-                    required
-               
-                    />
+                <input type="password" class="form-control" name="password" ngModel required />
             </div>
             <div class="form-group">
-                <button (click)="onLogin(authForm)" type="submit" class="btn btn-primary me-1">Log In</button>
-                <button (click)="onRegister(authForm)" type="submit" class="btn btn-primary">Sign Up</button>
+                <button button (click)="onLogin(authForm)" type="submit" class="btn btn-primary me-1">Log In</button>
+                <button button (click)="onRegister(authForm)" type="submit" class="btn btn-primary">Sign Up</button>
             </div>
         </form>
     </div>

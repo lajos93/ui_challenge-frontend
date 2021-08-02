@@ -30,8 +30,7 @@ export class EditDataComponent implements OnInit {
     });
    }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   convertImage(event) {
     //scope
@@ -48,7 +47,7 @@ export class EditDataComponent implements OnInit {
      function checkImageSize(res){
       image.onload = function () {
         if(image.width > 640 || image.height > 480){
-         _this.error = "The image can maximum be the size of 640x480px";
+         _this.error = "The image can maximum has the size of 640x480px";
           res(_this.error);
         }
         else{
@@ -77,9 +76,10 @@ export class EditDataComponent implements OnInit {
   
   updateData(form:NgForm){
     
-/*     if(!form.valid){
+    if(!form.valid){
       return;
-    } */
+    } 
+
     const username = form.value.username;
     const email = form.value.email;
     const bio = form.value.bio;
@@ -91,7 +91,6 @@ export class EditDataComponent implements OnInit {
         },
         errorMessage=>{
           this.authService.errorChange.next(errorMessage);
-          
       })
   }
 
