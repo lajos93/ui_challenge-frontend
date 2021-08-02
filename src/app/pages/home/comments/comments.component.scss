@@ -1,0 +1,290 @@
+.mat-sidenav-content {
+  background-color: rgb(240, 240, 240);
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 24px;
+  margin-bottom: 20px;
+  text-transform: none;
+}
+
+p:first-of-type {
+  font-size: 22px;
+  line-height: 33px;
+}
+@media (min-width: 768px) {
+  .recentupdates-container .post {
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+}
+
+.recentupdates-container .post {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.recentupdates-container .post .date {
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  padding-top: 15px;
+  -webkit-flex-basis: 9em;
+  -ms-flex-preferred-size: 9em;
+  flex-basis: 9em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  font-weight: 300;
+}
+
+.recentupdates-container .post .content {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -moz-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.recentupdates-container .post > div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.md-lite h5,
+.md-lite h6,
+.md-lite div,
+body.md-lite,
+.md-lite p {
+  font-size: 15px;
+}
+
+.md-lite h5,
+.md-lite h6,
+.md-lite div,
+body.md-lite,
+.md-lite p {
+  letter-spacing: 0.01em;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+h5,
+h6,
+div,
+body,
+p {
+  letter-spacing: 0.01em;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.recentupdates-container .post:nth-child(2n) {
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+    0 1px 3px 0 rgb(0 0 0 / 12%);
+  background: #fff;
+}
+
+//RIght arrow
+
+.recentupdates-container .post a {
+  -webkit-flex-basis: 11em;
+  -ms-flex-preferred-size: 11em;
+  flex-basis: 11em;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+@media (min-width: 768px) {
+  .post a {
+    text-align: right;
+  }
+}
+
+.md-lite .tr-action-text,
+.md-lite .tr-action-text button,
+.md-lite .tr-action-text input,
+.md-lite .tr-action-text option,
+.md-lite .tr-action-text select,
+.md-lite .tr-action-text button[mat-button],
+.md-lite .tr-action-text button[mat-menu-item],
+.md-lite button.tr-action-text,
+.md-lite a.button,
+.md-lite a.button > .mat-button-wrapper,
+.md-lite button > .mat-button-wrapper {
+  font-family: "Google Sans", "open sans", arial, sans-serif;
+  text-transform: none;
+}
+
+a:hover {
+  color: #1a73e8;
+}
+
+.md-lite a {
+  color: #1a73e8;
+}
+
+.tr-action-text,
+.tr-action-text button,
+.tr-action-text input,
+.tr-action-text option,
+.tr-action-text select,
+.tr-action-text button[mat-button],
+.tr-action-text button[mat-menu-item],
+button.tr-action-text,
+a.button {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.darker-blue[_nghost-gsb-c20] i[_ngcontent-gsb-c20] {
+  background-color: #1a73e8;
+}
+
+[_nghost-gsb-c20] i[_ngcontent-gsb-c20] {
+  background-color: #1a73e8;
+}
+
+[_nghost-gsb-c20] i[_ngcontent-gsb-c20] {
+  border-radius: 50%;
+  color: #fff;
+  margin-bottom: 3px;
+  margin-left: 0.5em;
+  padding: 1px;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+  will-change: transform;
+}
+
+.tr-action-text i {
+  font-size: 16px;
+  padding: 0 0 0.1em 0.1em;
+  vertical-align: middle;
+}
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+a > * {
+  font-family: "Roboto Medium", "open sans", arial, sans-serif;
+}
+
+* {
+  font-family: "Roboto Regular", roboto-regular, "open sans", arial, sans-serif;
+}
+i {
+  font-style: italic;
+}
+@media (min-width: 768px) {
+  .post a {
+    text-align: right;
+  }
+
+  .md-lite .tr-action-text,
+  .md-lite .tr-action-text button,
+  .md-lite .tr-action-text input,
+  .md-lite .tr-action-text option,
+  .md-lite .tr-action-text select,
+  .md-lite .tr-action-text button[mat-button],
+  .md-lite .tr-action-text button[mat-menu-item],
+  .md-lite button.tr-action-text,
+  .md-lite a.button,
+  .md-lite a.button > .mat-button-wrapper,
+  .md-lite button > .mat-button-wrapper {
+    font-family: "Google Sans", "open sans", arial, sans-serif;
+    text-transform: none;
+  }
+
+  .md-lite a {
+    color: #1a73e8;
+  }
+
+  .tr-action-text,
+  .tr-action-text button,
+  .tr-action-text input,
+  .tr-action-text option,
+  .tr-action-text select,
+  .tr-action-text button[mat-button],
+  .tr-action-text button[mat-menu-item],
+  button.tr-action-text,
+  a.button {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  a {
+    color: #1a73e8;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+  }
+  @media (min-width: 768px) {
+    .md-lite h5,
+    .md-lite h6,
+    .md-lite div,
+    body.md-lite,
+    .md-lite p {
+      font-size: 15px;
+    }
+  }
+
+  .md-lite h5,
+  .md-lite h6,
+  .md-lite div,
+  body.md-lite,
+  .md-lite p {
+    letter-spacing: 0.01em;
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  h5,
+  h6,
+  div,
+  body,
+  p {
+    letter-spacing: 0.01em;
+    font-weight: 300;
+    font-size: 15px;
+  }
+}

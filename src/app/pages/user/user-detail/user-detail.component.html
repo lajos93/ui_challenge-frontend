@@ -1,0 +1,8 @@
+<div class="row">
+    <div class="col-sm-3 mt-3">
+        <app-picture #picture></app-picture>
+    </div>
+    <div class="col-sm-9 mt-3">
+        <app-edit-data (onPreviewImage)="picture.previewImage($event)"></app-edit-data>
+    </div>
+</div>

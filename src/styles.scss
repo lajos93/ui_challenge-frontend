@@ -1,0 +1,39 @@
+.font-italic {
+  font-style: italic;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Google Sans", "open sans", arial, sans-serif;
+}
+
+//Boostrap addition
+.font-weight-light {
+  font-weight: 300;
+}
+
+.btn-light {
+  &.btn {
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+  }
+}
+
+.btn-light {
+  &.btn {
+    &:hover {
+      color: #212529;
+      background-color: #e2e6ea;
+      border-color: #dae0e5;
+    }
+  }
+}
