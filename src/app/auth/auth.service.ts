@@ -140,5 +140,12 @@ export class AuthService{
             );
     }
 
+    //Users
+    public getAllUsers(){
+        return this.http.get<ArrayBuffer>('http://localhost:3000/api/users').pipe(
+            catchError(this.handleError)
+        );
+    }
+
     
 }

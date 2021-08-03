@@ -24,6 +24,7 @@ import { ArticlesComponent } from './pages/articles/articles.component';
 import { ArticleCardComponent } from './pages/articles/article-card/article-card.component';
 import { ArticleCardFavComponent } from './pages/articles/article-card-fav/article-card-fav.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { UsersComponent } from './pages/users/users.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     ArticlesComponent,
     ArticleCardComponent,
     ArticleCardFavComponent,
-    RemoveButtonFocusDirective
+    RemoveButtonFocusDirective,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

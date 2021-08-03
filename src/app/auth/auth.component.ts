@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService,authResponseData } from './auth.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -44,7 +44,7 @@ export class AuthComponent implements OnInit {
 
   }
 
-  manageAuth(observable:Observable<authResponseData>){
+  manageAuth(observable:Observable<any>){
     return observable
       .subscribe(
         response => {
