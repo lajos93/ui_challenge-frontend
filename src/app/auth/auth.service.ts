@@ -4,35 +4,14 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError,tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable, ReplaySubject, Subject, Subscription, throwError } from "rxjs";
 import { User } from "./user.model";
+import { authResponseData } from "./user.model";
 import { Router } from "@angular/router";
-
-export interface authResponseData{
-    user: {
-            id:number,
-            username: string,
-            email: string,
-            bio: string,
-            image: string,
-            token?: string,
-
-    };
-}
-
-export interface authResponseLoggedInData{
-            id:number,
-            username: string,
-            email: string,
-            bio: string,
-            image: string,
-            token?: string,
-}
 
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
     public errorChange: Subject<string> = new Subject<string>();
     public user = new BehaviorSubject<User>(null);
-    private userToken = new BehaviorSubject<string>(null);
 
     constructor(private http:HttpClient,private router:Router){
 
@@ -106,13 +85,6 @@ export class AuthService{
 
     private handleError(errorRes: HttpErrorResponse){
 
-        console.log(errorRes);
-        console.log(errorRes.error.message);
-/*         if(errorRes.error.message){
-            errorMessage = errorRes.error.message;
-        } */
-
-
         let errorMessage = "Unknown error occurred"; 
         if(!errorRes.error){
             return throwError(errorMessage);
@@ -126,35 +98,28 @@ export class AuthService{
             errorMessage = Object.keys(errorRes.error.errors)[0] + Object.values(errorRes.error.errors)[0];
         }
 
-
-
         return throwError(errorMessage);
     }
 
-/*      public keepToken(token){
-        this.user.subscribe((val) => {
-            if(val)
-            token = val.token;
-          });   
-    }  */
 
+
+
+    //User
     public getToken(){
         const user = this.user.getValue();
         if(user){
             return user.token;
         }
         return null;
-      } 
+    } 
 
-
-    //User
     public getUserInfo(){
         return this.http.get<authResponseData>('http://localhost:3000/api/user')
     }
 
     public updateUserData(username:string,email:string,bio:string,image:string){
 
-        return this.http.put<authResponseLoggedInData>('http://localhost:3000/api/user',
+        return this.http.put<User>('http://localhost:3000/api/user',
         {
             username:username,
             email:email,

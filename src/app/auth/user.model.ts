@@ -9,3 +9,7 @@ export class User{
 
     ){}
 }
+
+export interface authResponseData{
+    user: User;
+}
