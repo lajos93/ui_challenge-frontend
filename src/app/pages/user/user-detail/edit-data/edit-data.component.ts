@@ -47,7 +47,7 @@ export class EditDataComponent implements OnInit {
      function checkImageSize(res){
       image.onload = function () {
         if(image.width > 640 || image.height > 480){
-         _this.error = "The image can maximum has the size of 640x480px";
+         _this.error = "The image can maximum has the width of 640px and/or the height of 480px";
           res(_this.error);
         }
         else{
@@ -69,7 +69,10 @@ export class EditDataComponent implements OnInit {
     });
 
     }
-    imageRead.readAsDataURL(file);
+    if(file)
+     imageRead.readAsDataURL(file); 
+    
+
   }
 
 

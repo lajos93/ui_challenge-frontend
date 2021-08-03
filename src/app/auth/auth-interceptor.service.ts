@@ -10,12 +10,11 @@ export class AuthInterceptorService implements HttpInterceptor {
     constructor(private authService:AuthService){}
     
     intercept(req: HttpRequest<any>, next: HttpHandler){
-        let token;
-        this.authService.user.subscribe((val) => {
-            token = val.token;
-          });  
 
-          console.log(token);
+        const token = this.authService.getToken();
+        if(!token){
+          return next.handle(req); 
+        }
 
         const modified = req.clone({
             setHeaders: {

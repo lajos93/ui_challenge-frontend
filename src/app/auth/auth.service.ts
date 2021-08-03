@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
 import { catchError,tap } from 'rxjs/operators';
-import { BehaviorSubject, Observable, ReplaySubject, Subject, throwError } from "rxjs";
+import { BehaviorSubject, Observable, ReplaySubject, Subject, Subscription, throwError } from "rxjs";
 import { User } from "./user.model";
 import { Router } from "@angular/router";
 
@@ -12,16 +12,27 @@ export interface authResponseData{
             username: string,
             email: string,
             bio: string,
-            token: string,
             image: string,
+            token?: string,
+
     };
+}
+
+export interface authResponseLoggedInData{
+            id:number,
+            username: string,
+            email: string,
+            bio: string,
+            image: string,
+            token?: string,
 }
 
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
     public errorChange: Subject<string> = new Subject<string>();
-    public user = new ReplaySubject<User>(1);
+    public user = new BehaviorSubject<User>(null);
+    private userToken = new BehaviorSubject<string>(null);
 
     constructor(private http:HttpClient,private router:Router){
 
@@ -37,14 +48,14 @@ export class AuthService{
         .pipe(
                 catchError(this.handleError),
                 tap(resData =>{
-                    this.handleLogin(
-                        resData.user.username,
-                        resData.user.image,
-                        resData.user.bio,
-                        resData.user.email,
+                    this.handleRequest(
                         resData.user.id,
+                        resData.user.username,
+                        resData.user.email,
+                        resData.user.bio,
+                        resData.user.image,
                         resData.user.token)
-                })   
+                }) 
             );
     }
 
@@ -58,12 +69,12 @@ export class AuthService{
         .pipe(
                 catchError(this.handleError),
                 tap(resData =>{
-                    this.handleLogin(
-                        resData.user.username,
-                        resData.user.image,
-                        resData.user.bio,
-                        resData.user.email,
+                    this.handleRequest(
                         resData.user.id,
+                        resData.user.username,
+                        resData.user.email,
+                        resData.user.bio,
+                        resData.user.image,
                         resData.user.token)
                 })   
             );
@@ -83,11 +94,14 @@ export class AuthService{
           })
       }
 
-    private handleLogin(username:string,image:string,bio:string,email:string,id:number,token:string){
-        const user = new User(username,bio,image,email,id,token)
-        this.user.next(user);
-       
+    private handleRequest(id:number,username:string,email:string,bio:string,image:string,token?:string){
+        if(!token)
+            token = this.getToken();
         
+        
+        const user = new User(id,username,email,bio,image,token)
+        this.user.next(user);  
+
     }
 
     private handleError(errorRes: HttpErrorResponse){
@@ -117,12 +131,20 @@ export class AuthService{
         return throwError(errorMessage);
     }
 
-    public getToken(){
+/*      public keepToken(token){
         this.user.subscribe((val) => {
-            return val.token;
+            if(val)
+            token = val.token;
           });   
-    }
+    }  */
 
+    public getToken(){
+        const user = this.user.getValue();
+        if(user){
+            return user.token;
+        }
+        return null;
+      } 
 
 
     //User
@@ -132,7 +154,7 @@ export class AuthService{
 
     public updateUserData(username:string,email:string,bio:string,image:string){
 
-        return this.http.put<authResponseData>('http://localhost:3000/api/user',
+        return this.http.put<authResponseLoggedInData>('http://localhost:3000/api/user',
         {
             username:username,
             email:email,
@@ -140,7 +162,16 @@ export class AuthService{
             image:image
         })
         .pipe(
-                catchError(this.handleError)  
+                catchError(this.handleError),
+                tap(resData =>{
+                    console.log(resData);
+                    this.handleRequest(
+                        resData.id,
+                        resData.username,
+                        resData.email,
+                        resData.bio,
+                        resData.image)
+                }) 
             );
     }
 
