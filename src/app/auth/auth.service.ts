@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 export class AuthService{
     public errorChange: Subject<string> = new Subject<string>();
     public user = new BehaviorSubject<User>(null);
+    public users = new BehaviorSubject<any>(null);
 
     constructor(private http:HttpClient,private router:Router){
 
@@ -84,14 +85,17 @@ export class AuthService{
     }
 
     private handleError(errorRes: HttpErrorResponse){
-
-        let errorMessage = "Unknown error occurred"; 
+        let errorMessage;
+        errorMessage = "Unknown error occurred"; 
         if(!errorRes.error){
             return throwError(errorMessage);
         }
 
         if(errorRes.error.message){
             errorMessage = errorRes.error.message;
+            if(errorRes.error.errors){
+                errorMessage = [errorMessage, Object.values(errorRes.error.errors)[0]];
+            }
         }
 
         else if(errorRes.error.errors){
@@ -101,14 +105,19 @@ export class AuthService{
         return throwError(errorMessage);
     }
 
-
-
-
     //User
     public getToken(){
         const user = this.user.getValue();
         if(user){
             return user.token;
+        }
+        return null;
+    } 
+
+    public getUserID(){
+        const user = this.user.getValue();
+        if(user){
+            return user.id;
         }
         return null;
     } 
@@ -142,10 +151,33 @@ export class AuthService{
 
     //Users
     public getAllUsers(){
-        return this.http.get<ArrayBuffer>('http://localhost:3000/api/users').pipe(
-            catchError(this.handleError)
+        return this.http.get<any>('http://localhost:3000/api/users').pipe(
+            catchError(this.handleError),
+            tap(resData=>{
+               this.selectCurrentUserOfAll(resData);
+            })
         );
     }
 
+    
+    private selectCurrentUserOfAll(resData){
+        for (let i=0; i<resData.length; i++) {
+            if(resData[i].id === this.getUserID()){
+              resData[i].currentUser = true;
+            } 
+          }
+       
+      this.users.next(resData)
+
+    }
+
+    public deletUserByEmail(email){
+        return this.http.delete<ArrayBuffer>(`http://localhost:3000/api/users/${email}`).pipe(
+            catchError(this.handleError)
+        );
+        
+    }
+
+    
     
 }

@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./picture.component.scss']
 })
 export class PictureComponent implements OnInit {
-  user:Object= null;
+  user:User= null;
   imagePreview;
 
   constructor(private authService:AuthService) { 

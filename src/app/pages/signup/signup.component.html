@@ -6,6 +6,7 @@
         <div class="col-xs-12">
             <div class="alert alert-danger " *ngIf="error">
                 <p class="mb-0">{{ error }}</p>
+                <span class="errorDesc" *ngIf="errorDesc">{{errorDesc}}</span>
             </div>
             <form #authForm="ngForm">
                 <div class="form-group mb-3">

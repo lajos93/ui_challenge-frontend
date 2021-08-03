@@ -1,7 +1,12 @@
 @import "../../../../node_modules/bootstrap/scss/functions";
 @import "../../../../node_modules/bootstrap/scss/variables";
+$primaryLight: rgba($primary, 0.3);
 
 .table {
+  .currentUser {
+    -webkit-box-shadow: 0px 0px 11px 1px $primaryLight;
+    box-shadow: 0px 0px 11px 1px $primaryLight;
+  }
   .td-user-image {
     max-width: 24px;
   }

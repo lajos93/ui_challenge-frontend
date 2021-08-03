@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { SharedFunctionsService } from 'src/app/shared/sharedFunctions/shared-functions.service';
 import { AuthService } from '../../auth/auth.service';
-import { User } from '../../auth/user.model';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +10,21 @@ import { User } from '../../auth/user.model';
 })
 export class LoginComponent implements OnInit {
   error:string = null;
+  errorDesc:string = null;
   user:string = null
 
 
-  constructor(private authService:AuthService,private router:Router) {
+  constructor(private authService:AuthService,private sharedFunctions:SharedFunctionsService) { 
     this.authService.errorChange.subscribe((errVal) => {
-      this.error = errVal;
+      if(this.sharedFunctions.checkIfArray(errVal)){
+        this.error = errVal[0];
+        this.errorDesc = errVal[1];
+      }
+      else{
+        this.error = errVal;
+      }      
     });
-   }
+  }
 
   ngOnInit(): void {
   }

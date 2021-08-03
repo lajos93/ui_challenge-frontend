@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/auth/user.model';
 
 @Component({
   selector: 'app-users',
@@ -7,25 +9,56 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-data;
-  constructor(private authService:AuthService) { 
-/*     this.data = [
-      {"id": 30,
-      "username": "lajos93",
-      "email": "lajos93@gmail.com",
-      "bio": "this si me"},
-      {"id": 22,
-      "username": "lajos3",
-      "email": "lajos93@gmail.com",
-      "bio": "this si me"}
-     ]; */
+  error:string = null;
+  data;
+
+  constructor(private authService:AuthService) {
+    //get all users request
+    this.authService.getAllUsers().subscribe(
+      res=>{
+        
+        
+      },
+      error=>{this.error = error}
+      );
+    //Get the users from the local users "Subject"
+    this.authService.users.subscribe(
+      res=>{
+        this.data = res;
+   /*      if(this.data){
+          for (let i=0; i<this.data.length; i++) {
+            console.log( this.data[i].id);
+            if(this.data[i].id = this.authService.getUserID()){
+              this.data[i].currentUser = true;
+            }
+          }
+          console.log(this.data);
+        } */
+      },
+      error=>{this.error = error}
+    );   
+
   }
 
   ngOnInit(): void {
-    this.authService.getAllUsers().subscribe(res=>{
-      this.data = res;
-      console.log(res)
-    })
+
   }
+
+  deleteUser(userEmail){
+    if(confirm("Do you want to delete the user with the following email: "+userEmail)) {
+      this.authService.deletUserByEmail(userEmail).subscribe(
+        res=>{
+          for (let i = 0; i < this.data.length; i++) {      
+            if (this.data[i].email == userEmail) {
+                console.log(this.data[i].email)
+                this.data.splice(i, 1);
+            }
+          }
+        },
+        error=>{this.error = error}
+        );
+    }
+  }
+  
 
 }
