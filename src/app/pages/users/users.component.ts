@@ -15,25 +15,13 @@ export class UsersComponent implements OnInit {
   constructor(private authService:AuthService) {
     //get all users request
     this.authService.getAllUsers().subscribe(
-      res=>{
-        
-        
-      },
+      res=>{},
       error=>{this.error = error}
       );
     //Get the users from the local users "Subject"
     this.authService.users.subscribe(
       res=>{
         this.data = res;
-   /*      if(this.data){
-          for (let i=0; i<this.data.length; i++) {
-            console.log( this.data[i].id);
-            if(this.data[i].id = this.authService.getUserID()){
-              this.data[i].currentUser = true;
-            }
-          }
-          console.log(this.data);
-        } */
       },
       error=>{this.error = error}
     );   
