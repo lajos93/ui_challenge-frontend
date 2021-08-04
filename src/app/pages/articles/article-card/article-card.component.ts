@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SharedFunctionsService } from 'src/app/shared/sharedFunctions/shared-functions.service';
 
 @Component({
   selector: 'app-article-card',
@@ -6,13 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./article-card.component.scss']
 })
 export class ArticleCardComponent implements OnInit {
+  @Input('title') title; 
+  @Input('body') body; 
+  @Input('description') description; 
+
   image:string;
 
-  constructor() {
-    this.image='https://picsum.photos/200?random='+Math.floor(Math.random() * 250);
+  constructor(private sharedFunctions:SharedFunctionsService) {
+    //this.image='https://picsum.photos/200?random='+Math.floor(Math.random() * 250);
    }
 
   ngOnInit(): void {
+    //a hack to show the image instead of the description if there is none
+    if(this.description){
+     if(this.sharedFunctions.checkIfImage(this.description)){
+      this.image =  this.description as string;
+      }
+    }
   }
 
   

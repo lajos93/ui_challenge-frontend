@@ -25,6 +25,11 @@ import { ArticleCardComponent } from './pages/articles/article-card/article-card
 import { ArticleCardFavComponent } from './pages/articles/article-card-fav/article-card-fav.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { UsersComponent } from './pages/users/users.component';
+import { CreateNewArticleComponent } from './pages/articles/create-new-article/create-new-article.component';
+import { SidebarItemComponent } from './pages/articles/sidebar-item/sidebar-item.component';
+import { SidebarPublishComponent } from './pages/articles/sidebar/sidebar-publish/sidebar-publish.component';
+import { SidebarTagsComponent } from './pages/articles/sidebar/sidebar-tags/sidebar-tags.component';
+import { SidebarImageComponent } from './pages/articles/sidebar/sidebar-image/sidebar-image.component';
 
 
 @NgModule({
@@ -48,7 +53,12 @@ import { UsersComponent } from './pages/users/users.component';
     ArticleCardComponent,
     ArticleCardFavComponent,
     RemoveButtonFocusDirective,
-    UsersComponent
+    UsersComponent,
+    CreateNewArticleComponent,
+    SidebarItemComponent,
+    SidebarPublishComponent,
+    SidebarTagsComponent,
+    SidebarImageComponent
   ],
   imports: [
     BrowserModule,

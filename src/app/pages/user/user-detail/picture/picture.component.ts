@@ -22,8 +22,6 @@ export class PictureComponent implements OnInit {
  
   ngOnInit(){}
 
-
-
   previewImage(imageSource) {
     this.imagePreview = imageSource;
   }

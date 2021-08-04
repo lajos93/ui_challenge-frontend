@@ -1,0 +1,30 @@
+<!-- Sidebar start -->
+<div class="container mt-3 p-0 bg-white rounded">
+    <!-- SidebarTitle -->
+    <div class="row">
+        <div class="col-xs-12  mb-3 pt-3 ps-4">
+            <h2 class="font-weight-light">Image</h2>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 ps-3 pe-3">
+            <!-- SidebarContent -->
+            <div class="pe-1 ps-1 pb-3 m-n1">
+                <div class="card-sidebar d-flex">
+
+
+                    <div class="col-md-12 ps-2  pe-2">
+                        <form>
+                            <div class="d-flex form-group mb-3">
+                                <input type="file" class="form-control" name="image"
+                                    (change)="sidebarGetData($event)" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

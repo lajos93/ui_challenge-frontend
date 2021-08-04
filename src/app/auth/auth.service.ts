@@ -13,6 +13,7 @@ export class AuthService{
     public errorChange: Subject<string> = new Subject<string>();
     public user = new BehaviorSubject<User>(null);
     public users = new BehaviorSubject<any>(null);
+    public articles = new BehaviorSubject<any>(null); 
 
     constructor(private http:HttpClient,private router:Router){
 
@@ -177,6 +178,33 @@ export class AuthService{
         );
         
     }
+
+    //Articles
+    public createArticle(title:string,description:string,body:string,tagList:[]){
+
+        return this.http.post<any>('http://localhost:3000/api/articles',
+        {
+            title:title,
+            description:description,
+            body:body,
+            tagList:tagList
+        })
+        .pipe(
+                catchError(this.handleError) 
+            );
+    }
+
+    public getAllArticles(){
+
+        return this.http.get<any>('http://localhost:3000/api/articles')
+        .pipe(
+                catchError(this.handleError),
+                tap(resData=>{
+                    this.articles.next(resData)
+                 })
+            );
+    }
+
 
     
     

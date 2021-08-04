@@ -33,7 +33,7 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(userEmail){
-    if(confirm("Do you want to delete the user with the following email: "+userEmail)) {
+    if(confirm("Are you sure you want to delete the user with the following email: "+userEmail)) {
       this.authService.deletUserByEmail(userEmail).subscribe(
         res=>{
           for (let i = 0; i < this.data.length; i++) {      

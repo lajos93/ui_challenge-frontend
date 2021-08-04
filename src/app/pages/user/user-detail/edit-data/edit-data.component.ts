@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
+import { SharedFunctionsService } from 'src/app/shared/sharedFunctions/shared-functions.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class EditDataComponent implements OnInit {
   _this:any;
 
 
-  constructor(private authService:AuthService) {
+  constructor(private authService:AuthService,private sharedFunctions:SharedFunctionsService) {
     this.authService.errorChange.subscribe((errVal) => {
       this.error = errVal;
     });
@@ -32,45 +33,12 @@ export class EditDataComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  convertImage(event) {
-    //scope
-    const _this = this;
-    
-    const file:File = event.target.files[0];
-    const imageRead:FileReader = new FileReader();
-
-    imageRead.onloadend = (e) => {
-
-     const image = new Image();
-     image.src = e.target.result as string;
-
-     function checkImageSize(res){
-      image.onload = function () {
-        if(image.width > 640 || image.height > 480){
-         _this.error = "The image can maximum have the width of 640px and/or the height of 480px";
-          res(_this.error);
-        }
-        else{
-          _this.error = null;
-          res(_this.error);
-        }
-      };
-     
-     }
-     checkImageSize(function(error){
-      if(!error){
-        const imageReadResult = imageRead.result as string;
-        _this.onPreviewImage.emit(imageReadResult);
-        _this.imageBase64 = imageReadResult;
-      }
-      else{
-        return;
-      }
+  onConvertImage(event) {
+    this.sharedFunctions.convertImage(event);
+    this.sharedFunctions.onPreviewImage.subscribe((imageBase64) => {
+      this.onPreviewImage.emit(imageBase64)
+      this.imageBase64 = imageBase64;
     });
-
-    }
-    if(file)
-     imageRead.readAsDataURL(file); 
   }
 
 
