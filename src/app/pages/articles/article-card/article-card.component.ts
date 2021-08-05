@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SharedFunctionsService } from 'src/app/shared/sharedFunctions/shared-functions.service';
 
 @Component({
@@ -7,14 +7,17 @@ import { SharedFunctionsService } from 'src/app/shared/sharedFunctions/shared-fu
   styleUrls: ['./article-card.component.scss']
 })
 export class ArticleCardComponent implements OnInit {
+  @Input('i') index; 
   @Input('title') title; 
   @Input('body') body; 
   @Input('description') description; 
 
+  @Output() editData = new EventEmitter;
+  @Output() deleteData = new EventEmitter;
+
   image:string;
 
   constructor(private sharedFunctions:SharedFunctionsService) {
-    //this.image='https://picsum.photos/200?random='+Math.floor(Math.random() * 250);
    }
 
   ngOnInit(): void {
@@ -24,6 +27,17 @@ export class ArticleCardComponent implements OnInit {
       this.image =  this.description as string;
       }
     }
+    if(!this.image){
+      this.image = this.sharedFunctions.getNoImage();
+    }
+  }
+
+  editDataClick(){
+    this.editData.emit(this.index)
+  }
+
+  deleteClick(){
+    this.deleteData.emit(this.index)
   }
 
   

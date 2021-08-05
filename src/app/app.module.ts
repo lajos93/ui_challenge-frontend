@@ -13,23 +13,19 @@ import { RemoveButtonFocusDirective } from './shared/removeButtonFocus/remove-bu
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
-import { CoverComponent } from './pages/home/cover/cover.component';
-import { IconsComponent } from './pages/home/icons/icons.component';
-import { CommentsComponent } from './pages/home/comments/comments.component';
 import { UserDetailComponent } from './pages/user/user-detail/user-detail.component';
 import { EditDataComponent } from './pages/user/user-detail/edit-data/edit-data.component';
 import { BasicInfoComponent } from './pages/user/user-detail/basic-info/basic-info.component';
 import { PictureComponent } from './pages/user/user-detail/picture/picture.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { ArticleCardComponent } from './pages/articles/article-card/article-card.component';
-import { ArticleCardFavComponent } from './pages/articles/article-card-fav/article-card-fav.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { UsersComponent } from './pages/users/users.component';
 import { CreateNewArticleComponent } from './pages/articles/create-new-article/create-new-article.component';
-import { SidebarItemComponent } from './pages/articles/sidebar-item/sidebar-item.component';
-import { SidebarPublishComponent } from './pages/articles/sidebar/sidebar-publish/sidebar-publish.component';
-import { SidebarTagsComponent } from './pages/articles/sidebar/sidebar-tags/sidebar-tags.component';
-import { SidebarImageComponent } from './pages/articles/sidebar/sidebar-image/sidebar-image.component';
+import { ArticleCardSidebarComponent } from './pages/articles/article-card-sidebar/article-card-sidebar.component';
+import { SidebarTagsComponent } from './pages/articles/create-new-article/sidebar/sidebar-tags/sidebar-tags.component';
+import { SidebarImageComponent } from './pages/articles/create-new-article/sidebar/sidebar-image/sidebar-image.component';
+import { ArticleItemComponent } from './pages/articles/article-item/article-item.component';
 
 
 @NgModule({
@@ -42,23 +38,19 @@ import { SidebarImageComponent } from './pages/articles/sidebar/sidebar-image/si
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    CoverComponent,
-    IconsComponent,
-    CommentsComponent,
     UserDetailComponent,
     EditDataComponent,
     BasicInfoComponent,
     PictureComponent,
     ArticlesComponent,
     ArticleCardComponent,
-    ArticleCardFavComponent,
     RemoveButtonFocusDirective,
     UsersComponent,
     CreateNewArticleComponent,
-    SidebarItemComponent,
-    SidebarPublishComponent,
     SidebarTagsComponent,
-    SidebarImageComponent
+    SidebarImageComponent,
+    ArticleCardSidebarComponent,
+    ArticleItemComponent
   ],
   imports: [
     BrowserModule,

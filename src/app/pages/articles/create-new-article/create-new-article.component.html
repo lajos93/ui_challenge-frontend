@@ -9,14 +9,14 @@
                         </div>
                         <div class="col-xs-12 p-4 pt-0 pb-0">
                             <div class="row">
-                                <form #articleForm="ngForm" (ngSubmit)="createNewArticle(articleForm)">
+                                <form #articleForm="ngForm" (ngSubmit)="updateCreateArticle(articleForm)">
                                     <div class="d-flex form-group mb-3">
                                         <input type="text" class="form-control" name="title" placeholder="Title"
                                             [(ngModel)]="title" required />
                                     </div>
                                     <div class="d-flex form-group mb-3">
                                         <input type="description" class="form-control" name="description"
-                                            placeholder="Description" [(ngModel)]="description" required />
+                                            placeholder="Description" [(ngModel)]="description" />
                                     </div>
                                     <div class="d-flex form-group mb-3">
                                         <textarea rows="7" class="form-control" name="body"
@@ -36,7 +36,8 @@
 
             <div class="col-md-3 mb-3 ">
                 <!-- Sidebar -->
-                <app-sidebar-tags (sideBarTagForm)="getTags($event)"></app-sidebar-tags>
+                <app-sidebar-tags (sideBarTagForm)="getTags($event)" [tagsFromEdit]="tags">
+                </app-sidebar-tags>
                 <app-sidebar-image (sideBarImage)="getImage($event)"></app-sidebar-image>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 import { User } from '../../auth/user.model';
 
@@ -8,11 +9,21 @@ import { User } from '../../auth/user.model';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  jsonUser:string;
+  isLoggedIn = false;
+  private userSub: Subscription
 
-  constructor() {  }
+  constructor(private authService:AuthService) { 
+
+   }
 
   ngOnInit(): void {
+    this.userSub = this.authService.user.subscribe(user=>{
+      this.isLoggedIn = !user ? false : true;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
   }
 
   

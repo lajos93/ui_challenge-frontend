@@ -16,6 +16,16 @@ h6 {
 }
 
 //Boostrap addition
+.mx-05 {
+  margin-right: 0.125rem !important;
+  margin-left: 0.125rem !important;
+}
+
+.mx-n1 {
+  margin-right: -0.125rem !important;
+  margin-left: -0.125rem !important;
+}
+
 .btn {
   &-fullwidth {
     width: 100%;

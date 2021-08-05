@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar-tags',
@@ -8,7 +8,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class SidebarTagsComponent implements OnInit {
   @Output() sideBarTagForm = new EventEmitter;
 
-  constructor() { }
+  @Input("tagsFromEdit") tags;
+
+  constructor() {
+      
+   }
 
   ngOnInit(): void {
   }

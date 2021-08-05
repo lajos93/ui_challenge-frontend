@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'articles', component: ArticlesComponent },
   { path: 'create-new', component: CreateNewArticleComponent },
+  { path: 'edit-article', component: CreateNewArticleComponent },
   { path: 'users', component: UsersComponent }
 ];
 

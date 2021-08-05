@@ -17,7 +17,7 @@
                         <form #sideBarTagForm="ngForm">
                             <div class="d-flex form-group mb-1">
                                 <input type="text" class="form-control" name="tags" placeholder="tag1,tag2,etc.."
-                                    (ngModelChange)="sidebarGetData($event)" ngModel />
+                                    (ngModelChange)="sidebarGetData($event)" [(ngModel)]="tags" />
 
                             </div>
                             <span class="form-input-hint">(seperated by commas)</span>

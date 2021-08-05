@@ -169,8 +169,8 @@ export class AuthService{
           }
        
       this.users.next(resData)
-
     }
+
 
     public deletUserByEmail(email){
         return this.http.delete<ArrayBuffer>(`http://localhost:3000/api/users/${email}`).pipe(
@@ -180,14 +180,34 @@ export class AuthService{
     }
 
     //Articles
-    public createArticle(title:string,description:string,body:string,tagList:[]){
+    public createArticle(title:string,description:string,body:string,tagList:string){
+        
+        let tagListString;
+        if(tagList)
+            tagListString = tagList.split(',');
 
         return this.http.post<any>('http://localhost:3000/api/articles',
         {
             title:title,
             description:description,
             body:body,
-            tagList:tagList
+            tagList:tagListString
+        })
+        .pipe(
+                catchError(this.handleError) 
+            );
+    }
+
+    public updateArticle(title:string,description:string,body:string,tagList:string,slug:string){
+        
+        const tagListString = tagList.split(',');
+
+        return this.http.put<any>(`http://localhost:3000/api/articles/${slug}`,
+        {
+            title:title,
+            description:description,
+            body:body,
+            tagList:tagListString
         })
         .pipe(
                 catchError(this.handleError) 
@@ -205,7 +225,27 @@ export class AuthService{
             );
     }
 
+    public deleteArticle(slug:string){
+        
+        return this.http.delete<any>(`http://localhost:3000/api/articles/${slug}`)
+        .pipe(
+                catchError(this.handleError)
+            );
+    }
 
     
+    public deleteSelectedArticleFromList(slug){
+        const data = this.articles.getValue();
+        if(data){
+            for (let i=0; i<data.articles.length; i++) {
+                if(data.articles[i].slug === slug){
+                    const index = data.articles.indexOf(data.articles[i]);
+                    data.articles.splice(index, 1);
+                    
+                } 
+            }
+        }
+      this.articles.next(data)
+    }
     
 }

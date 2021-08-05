@@ -30,9 +30,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(form:NgForm){
-/*     if(!form.valid){
-      return;
-    } */
     const email = form.value.email;
     const password = form.value.password;
 
@@ -41,10 +38,7 @@ export class LoginComponent implements OnInit {
       'user'
     );
 
-/*    this.authService.handleAuth(
-     ,
-     'user'
-   ); */
+
   }
 
 }

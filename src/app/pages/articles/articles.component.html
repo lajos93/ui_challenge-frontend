@@ -1,6 +1,7 @@
 <div class="container mt-3 ">
     <div class="container-fluid pb-5">
         <div class="row row-content">
+            <!-- Main -->
             <div class="col-md-9 mb-3">
                 <div class="container  pb-3 mt-3 ps-0 pe-0 rounded bg-white">
                     <div class="row">
@@ -9,9 +10,10 @@
                         </div>
                         <div class="col-xs-12 p-4 pt-0 pb-0" *ngIf="data">
                             <div class="row">
-                                <div class="col-sm-4 ps-2 pe-2" *ngFor="let item of data.articles">
-                                    <app-article-card [title]="item.title" [body]="item.body"
-                                        [description]="item.description"></app-article-card>
+                                <div class="col-sm-4 ps-2 pe-2" *ngFor="let item of data.articles; let i=index">
+                                    <app-article-card (editData)="editData($event)" (deleteData)="deleteArticle($event)"
+                                        [i]=i [title]="item.title" [body]="item.body" [description]="item.description">
+                                    </app-article-card>
                                 </div>
 
                             </div>
@@ -19,19 +21,20 @@
                     </div>
                 </div>
             </div>
+            <!-- Sidebar -->
             <div class="col-md-3 mb-3 ">
                 <div class="container mt-3 p-0 bg-white rounded">
                     <div class="row">
                         <div class="col-xs-12  mb-3 pt-3 ps-4">
-                            <h2 class="font-weight-light">Favourites</h2>
+                            <h2 class="font-weight-light">Popular</h2>
                         </div>
 
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-12 ps-3 pe-3">
-                            <app-article-card-fav></app-article-card-fav>
-                            <app-article-card-fav></app-article-card-fav>
+                        <div class="col-xs-12 ps-3 pe-3" *ngFor="let item of sideBarData">
+                            <app-article-card-sidebar [title]="item.title" [body]="item.body"
+                                [description]="item.description"></app-article-card-sidebar>
                         </div>
                     </div>
                 </div>
