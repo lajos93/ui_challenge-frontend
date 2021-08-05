@@ -10,6 +10,9 @@ import { SharedFunctionsService } from 'src/app/shared/sharedFunctions/shared-fu
   styleUrls: ['./create-new-article.component.scss']
 })
 export class CreateNewArticleComponent implements OnInit {
+  componentTitle;
+  componentButtonText;
+
   title:string;
   description:string;
   body:string;
@@ -17,7 +20,7 @@ export class CreateNewArticleComponent implements OnInit {
   imageData:string;
   slug:string;
 
-  isFromEdit:boolean = false;
+  isEditMode:boolean = false;
 
 
 
@@ -33,8 +36,11 @@ export class CreateNewArticleComponent implements OnInit {
       this.slug = dataEdit.slug 
       this.tags = dataEdit.tagList.join(",")
 
-      this.isFromEdit = true;
+      this.isEditMode = true;
     }
+
+    this.isEditMode ? this.componentTitle = "Edit article" : this.componentTitle = "Create new article";
+    this.isEditMode ? this.componentButtonText = "Update article" : this.componentButtonText = "Publish article";
   }
 
   ngOnInit(): void {
@@ -53,7 +59,7 @@ export class CreateNewArticleComponent implements OnInit {
     if(imageData)
       description = imageData;
 
-    if(!this.isFromEdit){
+    if(!this.isEditMode){
       //Not in edit mode
       this.authService.createArticle(title,description,body,tags).subscribe(
         response => {
