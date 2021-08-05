@@ -41,15 +41,16 @@ export class ArticlesComponent implements OnInit {
 
   deleteArticle(index){
     const slug = this.data.articles[index].slug;
-    console.log(slug);
 
-    this.authService.deleteArticle(slug).subscribe(
-    response => {
-      this.authService.deleteSelectedArticleFromList(slug)
-    },
-    errorMessage=>{
-      this.authService.errorChange.next(errorMessage);
-  }) 
+    if(confirm("Are you sure you want to delete this article?")) {
+        this.authService.deleteArticle(slug).subscribe(
+        response => {
+          this.authService.deleteSelectedArticleFromList(slug)
+        },
+        errorMessage=>{
+          this.authService.errorChange.next(errorMessage);
+      }) 
+    }
 
   }
 }

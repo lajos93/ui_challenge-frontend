@@ -34,7 +34,6 @@ export class CreateNewArticleComponent implements OnInit {
       this.tags = dataEdit.tagList.join(",")
 
       this.isFromEdit = true;
-      console.log(this.isFromEdit);
     }
   }
 

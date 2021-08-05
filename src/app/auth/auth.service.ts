@@ -60,6 +60,10 @@ export class AuthService{
                 })   
             );
     }
+
+    public logout(){
+        this.user.next(null);
+    }
     
 
     public handleAuth(observable:Observable<any>,routerDestination){

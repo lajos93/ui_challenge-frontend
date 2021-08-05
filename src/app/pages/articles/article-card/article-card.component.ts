@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { SharedFunctionsService } from 'src/app/shared/sharedFunctions/shared-functions.service';
 
 @Component({
@@ -7,6 +9,9 @@ import { SharedFunctionsService } from 'src/app/shared/sharedFunctions/shared-fu
   styleUrls: ['./article-card.component.scss']
 })
 export class ArticleCardComponent implements OnInit {
+  isLoggedIn:boolean;
+  userSub:Subscription;
+
   @Input('i') index; 
   @Input('title') title; 
   @Input('body') body; 
@@ -17,7 +22,10 @@ export class ArticleCardComponent implements OnInit {
 
   image:string;
 
-  constructor(private sharedFunctions:SharedFunctionsService) {
+  constructor(private sharedFunctions:SharedFunctionsService,private authService:AuthService) {
+    this.userSub = this.authService.user.subscribe(user=>{
+      this.isLoggedIn = !user ? false : true;
+    });
    }
 
   ngOnInit(): void {

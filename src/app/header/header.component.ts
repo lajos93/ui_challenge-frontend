@@ -23,8 +23,8 @@ export class HeaderComponent implements OnInit,OnDestroy {
     this.userSub.unsubscribe();
   }
 
-  dropdownPreventDef(event){
-    event.preventDefault();
+  logout(){
+    this.authService.logout();
   }
 
 }
