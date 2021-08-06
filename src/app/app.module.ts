@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
 import { UserComponent } from './pages/user/user.component';
 import { HeaderComponent } from './header/header.component';
 import { DropDownDirective } from './shared/dropdown/drop-down.directive';
@@ -31,7 +30,6 @@ import { ArticleItemComponent } from './pages/articles/article-item/article-item
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
     UserComponent,
     HeaderComponent,
     DropDownDirective,
