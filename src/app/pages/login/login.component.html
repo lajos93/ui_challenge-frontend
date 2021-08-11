@@ -9,15 +9,29 @@
                 <span *ngIf="errorDesc">{{errorDesc}}</span>
             </div>
             <form #authForm="ngForm">
-                <div class="form-group mb-3">
-                    <label for="email-input">E-mail</label>
-                    <input type="email" class="form-control" name="email" ngModel required />
-                </div>
-                <div class="form-group mb-3">
-                    <label for="password-input">Password</label>
-                    <input type="password" class="form-control" name="password" ngModel required />
-                </div>
                 <div class="form-group">
+                    <label for="email-input">E-mail</label>
+                    <input type="email" class="form-control" name="email" ngModel #email="ngModel"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
+                </div>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert p-0 pt-1">
+                    <span *ngIf="email.errors?.required">
+                        Email is required.
+                    </span>
+                    <span *ngIf="email.errors?.pattern">
+                        This is not a valid email.
+                    </span>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="password-input">Password</label>
+                    <input type="password" class="form-control" name="password" ngModel #password="ngModel" required />
+                </div>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert p-0 pt-1">
+                    <span *ngIf="password.errors?.required">
+                        Password is required.
+                    </span>
+                </div>
+                <div class="form-group mt-3">
                     <button button (click)="onLogin(authForm)" type="submit" class="btn btn-primary me-1"
                         [disabled]="!authForm.valid">Log In</button>
                 </div>

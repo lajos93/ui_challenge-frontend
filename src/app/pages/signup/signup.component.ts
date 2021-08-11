@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { SharedFunctionsService } from 'src/app/shared/sharedFunctions/shared-functions.service';
 import { AuthService } from '../../auth/auth.service';
 
@@ -25,18 +23,21 @@ export class SignupComponent implements OnInit {
         this.error = errVal;
       }      
     });
+
   }
 
   ngOnInit(): void {
   }
 
   onRegister(form:NgForm){
-    if(!form.valid){
+    if(!form.valid)
       return;
-    }
+    
+      
     const username = form.value.username;
     const email = form.value.email;
     const password = form.value.password;
+
 
     this.authService.handleAuth(
       this.authService.signup(username,email,password),
