@@ -28,6 +28,7 @@ export class EditDataComponent implements OnInit {
       this.username = userData.username;
       this.email = userData.email;
       this.bio = userData.bio;
+      this.imageBase64 = userData.image;
     });
    }
 
@@ -44,7 +45,7 @@ export class EditDataComponent implements OnInit {
 
   
   updateData(form:NgForm){
-    
+
     if(!form.valid){
       return;
     } 
