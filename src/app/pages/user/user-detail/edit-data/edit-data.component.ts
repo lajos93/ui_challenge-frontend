@@ -25,10 +25,12 @@ export class EditDataComponent implements OnInit {
       this.error = errVal;
     });
     this.authService.user.subscribe((userData) => {
-      this.username = userData.username;
-      this.email = userData.email;
-      this.bio = userData.bio;
-      this.imageBase64 = userData.image;
+        if(userData){
+          this.username = userData.username;
+          this.email = userData.email;
+          this.bio = userData.bio;
+          this.imageBase64 = userData.image;
+        }
     });
    }
 
@@ -56,9 +58,7 @@ export class EditDataComponent implements OnInit {
     const image = this.imageBase64;
 
       this.authService.updateUserData(username,email,bio,image).subscribe(
-        response => {
-          console.log(response);
-        },
+        response => {},
         errorMessage=>{
           this.authService.errorChange.next(errorMessage);
       })

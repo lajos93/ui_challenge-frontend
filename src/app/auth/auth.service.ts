@@ -143,7 +143,6 @@ export class AuthService{
         .pipe(
                 catchError(this.handleError),
                 tap(resData =>{
-                    console.log(resData);
                     this.handleRequest(
                         resData.id,
                         resData.username,

@@ -14,9 +14,11 @@ export class PictureComponent implements OnInit {
   imagePreview;
 
   constructor(private authService:AuthService) { 
-    this.authService.user.subscribe((val) => {
-      this.user = val;
-      this.imagePreview = val.image;
+    this.authService.user.subscribe((userData) => {
+      if(userData){
+        this.user = userData;
+        this.imagePreview = userData.image;
+      }
     });
   }
  
