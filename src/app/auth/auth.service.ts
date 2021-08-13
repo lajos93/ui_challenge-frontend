@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, ReplaySubject, Subject, Subscription, thro
 import { User } from "./user.model";
 import { authResponseData } from "./user.model";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 
 @Injectable({providedIn: 'root'})
@@ -20,7 +21,7 @@ export class AuthService{
     }
 
     public signup(username:string,email:string,password:string){
-        return this.http.post<authResponseData>('http://localhost:3000/api/users',
+        return this.http.post<authResponseData>( environment.apiUrl +'/api/users',
         {
             username:username,
             email:email,
@@ -42,7 +43,7 @@ export class AuthService{
 
     public login(email:string,password:string){
 
-        return this.http.post<authResponseData>('http://localhost:3000/api/login',
+        return this.http.post<authResponseData>( environment.apiUrl +'/api/login',
         {
             email:email,
             password:password
@@ -128,12 +129,12 @@ export class AuthService{
     } 
 
     public getUserInfo(){
-        return this.http.get<authResponseData>('http://localhost:3000/api/user')
+        return this.http.get<authResponseData>( environment.apiUrl +'/api/user')
     }
 
     public updateUserData(username:string,email:string,bio:string,image:string){
 
-        return this.http.put<User>('http://localhost:3000/api/user',
+        return this.http.put<User>( environment.apiUrl +'/api/user',
         {
             username:username,
             email:email,
@@ -155,7 +156,7 @@ export class AuthService{
 
     //Users
     public getAllUsers(){
-        return this.http.get<any>('http://localhost:3000/api/users').pipe(
+        return this.http.get<any>( environment.apiUrl +'/api/users').pipe(
             catchError(this.handleError),
             tap(resData=>{
                this.selectCurrentUserOfAll(resData);
@@ -176,7 +177,7 @@ export class AuthService{
 
 
     public deletUserByEmail(email){
-        return this.http.delete<ArrayBuffer>(`http://localhost:3000/api/users/${email}`).pipe(
+        return this.http.delete<ArrayBuffer>(`${environment.apiUrl}/api/users/${email}`).pipe(
             catchError(this.handleError)
         );
         
@@ -189,7 +190,7 @@ export class AuthService{
         if(tagList)
             tagListString = tagList.split(',');
 
-        return this.http.post<any>('http://localhost:3000/api/articles',
+        return this.http.post<any>( environment.apiUrl +'/api/articles',
         {
             title:title,
             description:description,
@@ -205,7 +206,7 @@ export class AuthService{
         
         const tagListString = tagList.split(',');
 
-        return this.http.put<any>(`http://localhost:3000/api/articles/${slug}`,
+        return this.http.put<any>(`${environment.apiUrl}/api/articles/${slug}`,
         {
             title:title,
             description:description,
@@ -219,7 +220,7 @@ export class AuthService{
 
     public getAllArticles(){
 
-        return this.http.get<any>('http://localhost:3000/api/articles')
+        return this.http.get<any>( environment.apiUrl +'/api/articles')
         .pipe(
                 catchError(this.handleError),
                 tap(resData=>{
@@ -230,7 +231,7 @@ export class AuthService{
 
     public deleteArticle(slug:string){
         
-        return this.http.delete<any>(`http://localhost:3000/api/articles/${slug}`)
+        return this.http.delete<any>(`${environment.apiUrl}/api/articles/${slug}`)
         .pipe(
                 catchError(this.handleError)
             );
