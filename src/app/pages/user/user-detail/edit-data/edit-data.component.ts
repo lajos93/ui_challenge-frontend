@@ -58,7 +58,7 @@ export class EditDataComponent implements OnInit {
     const image = this.imageBase64;
 
       this.authService.updateUserData(username,email,bio,image).subscribe(
-        response => {},
+        response => { },
         errorMessage=>{
           this.authService.errorChange.next(errorMessage);
       })
