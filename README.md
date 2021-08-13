@@ -1,33 +1,36 @@
-Front-end coding challange
----
+## Front-end coding challange
 
-Create a Single Page Application (SPA), using TypeScript as the main language.
-Every applied stylesheet has to be made with any chosen CSS preprocessor (Sass, Less ...). Using a css framework is not required, but it's a plus.
-We also require you to write unit tests for your application, but full coverage is not necessary.
-One of the most cruicial part of this challange is that you have to be able to authenticate and authorize users through this application.
-Any displayed form must be validated on the front-end side and returned back-end errors have to be displayed.
+## Finished project description
 
-## Backend
-The challenge includes a Node.js back-end, exposing a REST API, and documentation for it.
-Documentation can be reached through the http://localhost:3000/docs URL, after the backend is started.
+This project is a single page Angular based app with boostrap framework for styling. In each component style file there are also small styling corrections for the corresponding components.
 
-## Requirements
-```
+Additionally there is a "styles" folder in "src/app/styles" where you can find the defined styles for the components that share the same styles eg.: Login and SignUp page uses the same style file "login-signup.scss"
+
+As for unit testing, you can find the specs files in the "src/app/login","src/app/signup","src/app/articles" folders where I am testing the main features of the app, whether the forms are filled out correctly, http requests ( GET,PUT)
+
+The app uses all the features described in the "README.md" file,namely
+
+- Authentication
+- Form validation (front-end, back-end)
 - User Login
 - User Registration
 - Show your user profile
 - Edit your user profile
 - List/Delete User (not yourself)
 - List/Create/Update/Delete Articles
-```
 
-Anything else is optional.
+---
 
-----------
+# Getting started for the frontend
+
+    npm install
+    npm start
+
+    open http://localhost:4200
 
 # Getting started for the backend
 
     npm install
-	npm start
-	
-	open http://localhost:3000/docs
+    npm start
+
+    open http://localhost:3000/docs
