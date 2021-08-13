@@ -9,9 +9,11 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['../../styles/login-signup/login-signup.scss']
 })
 export class LoginComponent implements OnInit {
+  emailVal;
+  passwordVal;
+
   error:string = null;
   errorDesc:string = null;
-  user:string = null
 
 
   constructor(private authService:AuthService,private sharedFunctions:SharedFunctionsService) { 
@@ -33,8 +35,8 @@ export class LoginComponent implements OnInit {
     if(!form.valid)
       return;
 
-    const email = form.value.email;
-    const password = form.value.password;
+    const email = this.emailVal;
+    const password = this.passwordVal;
 
     this.authService.handleAuth(
       this.authService.login(email,password),

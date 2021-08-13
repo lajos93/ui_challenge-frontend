@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SharedFunctionsService } from 'src/app/shared/sharedFunctions/shared-functions.service';
 import { AuthService } from '../../auth/auth.service';
@@ -9,6 +9,10 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['../../styles/login-signup/login-signup.scss']
 })
 export class SignupComponent implements OnInit {
+  usernameVal;
+  emailVal;
+  passwordVal;
+  
   error:string = null;
   errorDesc:string = null;
 
@@ -32,12 +36,10 @@ export class SignupComponent implements OnInit {
   onRegister(form:NgForm){
     if(!form.valid)
       return;
-    
-      
-    const username = form.value.username;
-    const email = form.value.email;
-    const password = form.value.password;
-
+  
+    const username = this.usernameVal;
+    const email = this.emailVal;
+    const password = this.passwordVal;
 
     this.authService.handleAuth(
       this.authService.signup(username,email,password),
