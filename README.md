@@ -27,10 +27,3 @@ The app uses all the features described in the "README.md" file,namely
     npm start
 
     open http://localhost:4200
-
-# Getting started for the backend
-
-    npm install
-    npm start
-
-    open http://localhost:3000/docs
