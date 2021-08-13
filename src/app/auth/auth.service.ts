@@ -249,6 +249,8 @@ export class AuthService{
                 } 
             }
         }
+        data.articlesCount = data.articlesCount-1;
+        
       this.articles.next(data)
     }
     

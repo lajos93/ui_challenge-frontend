@@ -12,17 +12,24 @@ export class ArticlesComponent implements OnInit {
   data:any;
   sideBarData:any;
 
+  showContainer:boolean;
+
   constructor(private authService:AuthService,private router:Router) { 
     this.authService.getAllArticles().subscribe(
       res=>{},
       error=>{this.error = error}
       );
-    //Get the users from the local users "Subject"
     this.authService.articles.subscribe(
       res=>{
         if(res){
+          if(res.articlesCount>0)
+            this.showContainer = true;
+          else
+            this.showContainer = false;
+
           this.data = res;
           this.sideBarData = res.articles.slice(0, 2);
+
         }
       },
       error=>{this.error = error}
