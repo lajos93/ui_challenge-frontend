@@ -76,7 +76,7 @@ export class AuthService{
             return;
         }
 
-        const loadedUser = new User(+userData.id,userData.username,userData.email,userData.bio,userData.image,userData.token)
+        const loadedUser = new User(userData.id,userData.username,userData.email,userData.bio,userData.image,userData.token)
 
         if(loadedUser.token){
             const remainingTime = +this.getTokenPayload(loadedUser.token).exp*1000 - +Date.now();
@@ -118,7 +118,7 @@ export class AuthService{
           })
       }
 
-    private handleRequest(id:number,username:string,email:string,bio:string,image:string,token?:string){
+    private handleRequest(id:string,username:string,email:string,bio:string,image:string,token?:string){
         if(!token)
             token = this.getToken();
         
@@ -300,8 +300,6 @@ export class AuthService{
         var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(''));
-    
-        console.log(JSON.parse(jsonPayload));
         return JSON.parse(jsonPayload);
     };
     
