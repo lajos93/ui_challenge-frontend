@@ -15,6 +15,7 @@ export class AuthService{
     public user = new BehaviorSubject<User>(null);
     public users = new BehaviorSubject<any>(null);
     public articles = new BehaviorSubject<any>(null); 
+    private tokenExpirationTimer:any;
 
     constructor(private http:HttpClient,private router:Router){
 
@@ -62,8 +63,45 @@ export class AuthService{
             );
     }
 
+    public autoLogin(){
+        const userData:{
+            id:string,
+            username:string,
+            email:string,
+            bio:string
+            image:string,
+            token:string
+        } = JSON.parse(localStorage.getItem('userData'));
+        if(!userData){
+            return;
+        }
+
+        const loadedUser = new User(+userData.id,userData.username,userData.email,userData.bio,userData.image,userData.token)
+
+        if(loadedUser.token){
+            const remainingTime = +this.getTokenPayload(loadedUser.token).exp*1000 - +Date.now();
+           this.autoLogout(remainingTime);
+            this.user.next(loadedUser);
+        }
+    }
+
+    public autoLogout(tokenExpirationDate:number){
+        console.log('tokenexp',tokenExpirationDate);
+        this.tokenExpirationTimer = setTimeout(()=>{
+            this.logout();
+        },tokenExpirationDate)
+
+    }
+
+
     public logout(){
         this.user.next(null);
+        localStorage.removeItem('userData');
+        if(this.tokenExpirationTimer){
+            clearTimeout(this.tokenExpirationTimer);
+        }
+
+        this.tokenExpirationTimer = null;
     }
     
 
@@ -84,10 +122,11 @@ export class AuthService{
         if(!token)
             token = this.getToken();
         
-        
         const user = new User(id,username,email,bio,image,token)
         this.user.next(user);  
-
+        const decodedToken = this.getTokenPayload(token);
+        this.autoLogout(+decodedToken.exp*1000-+decodedToken.iat*1000);
+        localStorage.setItem('userData',JSON.stringify(user));
     }
 
     private handleError(errorRes: HttpErrorResponse){
@@ -253,5 +292,17 @@ export class AuthService{
         
       this.articles.next(data)
     }
+
+    //parse token
+    private getTokenPayload (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    
+        console.log(JSON.parse(jsonPayload));
+        return JSON.parse(jsonPayload);
+    };
     
 }
