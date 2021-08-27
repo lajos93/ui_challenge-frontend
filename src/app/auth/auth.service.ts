@@ -85,11 +85,10 @@ export class AuthService{
         }
     }
 
-    public autoLogout(tokenExpirationDate:number){
-        console.log('tokenexp',tokenExpirationDate);
+    public autoLogout(tokenExpirationTime:number){
         this.tokenExpirationTimer = setTimeout(()=>{
             this.logout();
-        },tokenExpirationDate)
+        },tokenExpirationTime)
 
     }
 
@@ -295,12 +294,22 @@ export class AuthService{
 
     //parse token
     private getTokenPayload (token) {
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-        return JSON.parse(jsonPayload);
+        if(token){
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+         }
+         return null
+    };
+
+    
+    public getTokenExpiration (token) {
+        if(token)
+            return this.getTokenPayload(token).exp * 1000;
+        return null;
     };
     
 }
