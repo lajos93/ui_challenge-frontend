@@ -21,7 +21,15 @@
                                 </div>
 
                             </ng-container>
-                            <ng-container *ngIf="!showContainer">
+                            <ng-container *ngIf="isLoading">
+                                <div class="clearfix">
+                                    <div class="spinner-border float-right" role="status">
+
+                                    </div>
+                                </div>
+                                <span class="sr-only">Loading articles...</span>
+                            </ng-container>
+                            <ng-container *ngIf="!showContainer && !isLoading">
                                 <span>No articles to show</span>
                             </ng-container>
                         </div>

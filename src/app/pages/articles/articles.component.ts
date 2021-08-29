@@ -13,6 +13,7 @@ export class ArticlesComponent implements OnInit {
   sideBarData:any;
 
   showContainer:boolean;
+  isLoading:boolean = true;
 
   constructor(private authService:AuthService,private router:Router) { 
     this.authService.getAllArticles().subscribe(
@@ -22,10 +23,14 @@ export class ArticlesComponent implements OnInit {
     this.authService.articles.subscribe(
       res=>{
         if(res){
-          if(res.articlesCount>0)
+          if(res.articlesCount>0){
+            this.isLoading = false;
             this.showContainer = true;
-          else
+          }
+          else{
+            this.isLoading = false;
             this.showContainer = false;
+          }
 
           this.data = res;
           this.sideBarData = res.articles.slice(0, 2);
