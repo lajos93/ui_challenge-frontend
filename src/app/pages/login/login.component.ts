@@ -11,9 +11,12 @@ import { AuthService } from '../../auth/auth.service';
 export class LoginComponent implements OnInit {
   emailVal;
   passwordVal;
+  isLoading:boolean;
 
   error:string = null;
   errorDesc:string = null;
+
+
 
 
   constructor(private authService:AuthService,private sharedFunctions:SharedFunctionsService) { 
@@ -24,8 +27,12 @@ export class LoginComponent implements OnInit {
       }
       else{
         this.error = errVal;
-      }      
+      }  
+   
     });
+    this.authService.isLoading.subscribe(isLoading => {
+      this.isLoading = isLoading;
+    })
   }
 
   ngOnInit(): void {
@@ -37,6 +44,8 @@ export class LoginComponent implements OnInit {
 
     const email = this.emailVal;
     const password = this.passwordVal;
+
+    this.isLoading = true;
 
     this.authService.handleAuth(
       this.authService.login(email,password),

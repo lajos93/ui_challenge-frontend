@@ -12,6 +12,7 @@ import { environment } from "src/environments/environment";
 @Injectable({providedIn: 'root'})
 export class AuthService{
     public errorChange: Subject<string> = new Subject<string>();
+    public isLoading = new BehaviorSubject<boolean>(null);
     public user = new BehaviorSubject<User>(null);
     public users = new BehaviorSubject<any>(null);
     public articles = new BehaviorSubject<any>(null); 
@@ -110,9 +111,12 @@ export class AuthService{
           .subscribe(
             response => {
               this.errorChange.next(null);
+              this.isLoading.next(false);
               this.router.navigate([routerDestination]);
+
             },
             errorMessage=>{
+              this.isLoading.next(false)
               this.errorChange.next(errorMessage);
               
           })

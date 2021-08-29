@@ -33,8 +33,11 @@
                     </span>
                 </div>
                 <div class="form-group mt-3">
-                    <button button (click)="onLogin(authForm)" type="submit" class="btn btn-primary me-1"
-                        [disabled]="!authForm.valid">Log In</button>
+                    <button button (click)="onLogin(authForm)" type="submit" class="btn btn-primary me-1 d-flex"
+                        [disabled]="!authForm.valid">Log In <div *ngIf="isLoading" class="clearfix ms-1">
+                            <div class="spinner-border float-right" role="status"></div>
+                        </div></button>
+
                 </div>
             </form>
         </div>

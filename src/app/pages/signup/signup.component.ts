@@ -12,6 +12,7 @@ export class SignupComponent implements OnInit {
   usernameVal;
   emailVal;
   passwordVal;
+  isLoading:boolean;
   
   error:string = null;
   errorDesc:string = null;
@@ -27,6 +28,9 @@ export class SignupComponent implements OnInit {
         this.error = errVal;
       }      
     });
+    this.authService.isLoading.subscribe(isLoading => {
+      this.isLoading = isLoading;
+    })
 
   }
 
@@ -36,6 +40,8 @@ export class SignupComponent implements OnInit {
   onRegister(form:NgForm){
     if(!form.valid)
       return;
+
+    this.isLoading = true;
   
     const username = this.usernameVal;
     const email = this.emailVal;
