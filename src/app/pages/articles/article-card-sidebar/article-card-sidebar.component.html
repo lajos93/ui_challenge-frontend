@@ -9,7 +9,7 @@
 
         <div class="col-md-8 ps-2">
             <h6 class="">{{title}}</h6>
-            <p class="card-text">{{body}} </p>
+            <p class="card-text">{{ (body.length>50)? (body | slice:0:50)+'...':(body)}} </p>
         </div>
     </div>
 </div>

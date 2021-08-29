@@ -223,7 +223,7 @@ export class AuthService{
     }
 
     //Articles
-    public createArticle(title:string,description:string,body:string,tagList:string){
+    public createArticle(title:string,description:string,image:string,body:string,tagList:string){
         
         let tagListString;
         if(tagList)
@@ -233,6 +233,7 @@ export class AuthService{
         {
             title:title,
             description:description,
+            image:image,
             body:body,
             tagList:tagListString
         })
@@ -241,7 +242,7 @@ export class AuthService{
             );
     }
 
-    public updateArticle(title:string,description:string,body:string,tagList:string,slug:string){
+    public updateArticle(title:string,description:string,image:string,body:string,tagList:string,slug:string){
         
         const tagListString = tagList.split(',');
 
@@ -249,6 +250,7 @@ export class AuthService{
         {
             title:title,
             description:description,
+            image:image,
             body:body,
             tagList:tagListString
         })

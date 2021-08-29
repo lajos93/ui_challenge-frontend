@@ -16,11 +16,10 @@ export class ArticleCardComponent implements OnInit {
   @Input('title') title; 
   @Input('body') body; 
   @Input('description') description; 
+  @Input('image') image; 
 
   @Output() editData = new EventEmitter;
   @Output() deleteData = new EventEmitter;
-
-  image:string;
 
   constructor(private sharedFunctions:SharedFunctionsService,private authService:AuthService) {
     this.userSub = this.authService.user.subscribe(user=>{
@@ -30,11 +29,6 @@ export class ArticleCardComponent implements OnInit {
 
   ngOnInit(): void {
     //a hack to show the image instead of the description if there is none
-    if(this.description){
-     if(this.sharedFunctions.checkIfImage(this.description)){
-      this.image =  this.description as string;
-      }
-    }
     if(!this.image){
       this.image = this.sharedFunctions.getNoImage();
     }

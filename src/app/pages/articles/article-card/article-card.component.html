@@ -4,7 +4,7 @@
             <img class="card-img-top" [src]="image" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{title}}</h5>
-                <p class="card-text">{{body}}</p>
+                <p class="card-text">{{ (body.length>50)? (body | slice:0:50)+'...':(body)}}</p>
                 <div class="d-flex mx-n1">
                     <button button type="button" X class="btn btn-primary btn-block mx-05">Read</button>
                     <button *ngIf="isLoggedIn" button class="btn btn-warning mx-05" (click)="editDataClick()">

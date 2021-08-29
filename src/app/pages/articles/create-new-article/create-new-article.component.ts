@@ -55,13 +55,9 @@ export class CreateNewArticleComponent implements OnInit {
     const imageData = this.imageData;
     const slug = this.slug;
 
-    //Hack to insert imageData instead of description
-    if(imageData)
-      description = imageData;
-
     if(!this.isEditMode){
       //Not in edit mode
-      this.authService.createArticle(title,description,body,tags).subscribe(
+      this.authService.createArticle(title,description,imageData,body,tags).subscribe(
         response => {
           form.reset();
           this.router.navigate(['articles']);
@@ -72,7 +68,7 @@ export class CreateNewArticleComponent implements OnInit {
     }
     else{
       //Edit mode
-       this.authService.updateArticle(title,description,body,tags,slug).subscribe(
+       this.authService.updateArticle(title,description,imageData,body,tags,slug).subscribe(
         response => {
           form.reset();
           this.router.navigate(['articles']);

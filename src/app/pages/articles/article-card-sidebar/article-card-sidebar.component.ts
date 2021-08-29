@@ -10,17 +10,12 @@ export class ArticleCardSidebarComponent implements OnInit {
   @Input('title') title; 
   @Input('body') body; 
   @Input('description') description; 
-
-  image:string;
+  @Input('image') image; 
 
   constructor(private sharedFunctions:SharedFunctionsService) {
    }
   ngOnInit(): void {
-    if(this.description){
-      if(this.sharedFunctions.checkIfImage(this.description)){
-       this.image =  this.description as string;
-       }
-     }
+
      if(!this.image){
        this.image = this.sharedFunctions.getNoImage();
      }

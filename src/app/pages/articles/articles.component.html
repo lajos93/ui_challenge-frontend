@@ -14,7 +14,7 @@
                                     <div class="col-sm-4 ps-2 pe-2" *ngFor="let item of data.articles; let i=index">
                                         <app-article-card (editData)="editData($event)"
                                             (deleteData)="deleteArticle($event)" [i]=i [title]="item.title"
-                                            [body]="item.body" [description]="item.description">
+                                            [body]="item.body" [description]="item.description" [image]="item.image">
                                         </app-article-card>
                                     </div>
 
@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-xs-12 ps-3 pe-3" *ngFor="let item of sideBarData">
                                 <app-article-card-sidebar [title]="item.title" [body]="item.body"
-                                    [description]="item.description"></app-article-card-sidebar>
+                                    [description]="item.description" [image]="item.image"></app-article-card-sidebar>
                             </div>
                         </div>
 
