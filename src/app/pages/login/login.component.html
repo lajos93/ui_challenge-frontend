@@ -1,5 +1,6 @@
 <div class="container pt-3 pb-5 mt-4 bg-white rounded  w-25">
     <div class="row">
+
         <div class="col-xs-12 mb-3">
             <h2 class="font-weight-light">Log in</h2>
         </div>
@@ -8,6 +9,9 @@
                 <p class="mb-0">{{ error }}</p>
                 <span *ngIf="errorDesc">{{errorDesc}}</span>
             </div>
+            <div class="mb-3"> <span style="font-size: 12px;">Test account: <br>email:<b>test@test.com</b>
+                    <br>password:<b>123</b></span></div>
+
             <form #authForm="ngForm">
                 <div class="form-group">
                     <label for="email-input">E-mail</label>
